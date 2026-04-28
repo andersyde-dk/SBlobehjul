@@ -177,7 +177,7 @@ app.get('/api/stats', (req, res) => {
 
 // ── Forside ───────────────────────────────────────────────
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'scootshop.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // ── Start server ──────────────────────────────────────────
