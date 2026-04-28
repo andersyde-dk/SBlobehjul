@@ -1,0 +1,15 @@
+{
+  "name": "scootshop",
+  "version": "1.0.0",
+  "description": "Genbrugte løbehjul – webshop",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.4.3",
+    "express": "^4.18.3",
+    "multer": "^1.4.5-lts.1"
+  }
+}
