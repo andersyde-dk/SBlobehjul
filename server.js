@@ -175,6 +175,11 @@ app.get('/api/stats', (req, res) => {
   res.json({ front_views: parseInt(val.value) });
 });
 
+// ── Forside ───────────────────────────────────────────────
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'scootshop.html'));
+});
+
 // ── Start server ──────────────────────────────────────────
 app.listen(PORT, () => {
   console.log(`ScootShop kører på http://localhost:${PORT}`);
