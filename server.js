@@ -8,11 +8,16 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // ── Mapper ────────────────────────────────────────────────
-const UPLOADS_DIR = path.join(__dirname, 'uploads');
-if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR);
+// Brug Railway Volume hvis tilgængeligt, ellers lokal mappe
+const DATA_DIR = process.env.RAILWAY_VOLUME_MOUNT_PATH || path.join(__dirname, 'data');
+const UPLOADS_DIR = path.join(DATA_DIR, 'uploads');
+
+if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 
 // ── Database ──────────────────────────────────────────────
-const db = new Database(path.join(__dirname, 'shop.db'));
+// Database gemmes på volumet så den overlever deployments
+const db = new Database(path.join(DATA_DIR, 'shop.db'));
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS products (
